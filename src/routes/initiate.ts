@@ -16,8 +16,7 @@ router.post("/", async (req: Request, res: Response) => {
 
   if (!phone || !kes_amount || !recipient_address) {
     res.status(400).json({
-      error:
-        "phone, kes_amount and recipient_address are required"
+      error: "phone, kes_amount and recipient_address are required",
     });
     return;
   }
@@ -57,7 +56,9 @@ router.post("/", async (req: Request, res: Response) => {
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : String(err);
     txDB.update(id, { status: "failed", error: message });
-    res.status(502).json({ error: "Failed to initiate M-Pesa payment", detail: message });
+    res
+      .status(502)
+      .json({ error: "Failed to initiate M-Pesa payment", detail: message });
   }
 });
 

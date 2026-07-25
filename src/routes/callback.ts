@@ -40,7 +40,8 @@ router.post("/", async (req: Request, res: Response) => {
 
   // Extract M-Pesa receipt from metadata
   const items = cb.CallbackMetadata?.Item ?? [];
-  const receipt = items.find((i) => i.Name === "MpesaReceiptNumber")?.Value as string | undefined;
+  const receipt = items.find((i) => i.Name === "MpesaReceiptNumber")?.Value as
+    string | undefined;
 
   txDB.update(tx.id, {
     status: "mpesa_confirmed",
@@ -61,7 +62,10 @@ router.post("/", async (req: Request, res: Response) => {
     console.log(`[callback] USDC sent! tx: ${result.explorerUrl}`);
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : String(err);
-    txDB.update(tx.id, { status: "failed", error: `ETH transfer failed: ${message}` });
+    txDB.update(tx.id, {
+      status: "failed",
+      error: `ETH transfer failed: ${message}`,
+    });
     console.error(`[callback] ETH transfer failed for ${tx.id}: ${message}`);
   }
 });

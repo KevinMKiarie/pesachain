@@ -29,13 +29,13 @@ initiated → mpesa_stk_sent → mpesa_confirmed → eth_pending → eth_confirm
 
 ## API Endpoints
 
-| Method | Path | Description |
-|---|---|---|
-| `GET` | `/health` | Server alive check |
-| `POST` | `/bridge/initiate` | Start a KES → USDC transaction |
-| `GET` | `/bridge/status/:id` | Poll transaction state |
-| `POST` | `/bridge/retry/:id` | Retry failed ETH transfer after M-Pesa confirmed |
-| `POST` | `/mpesa/callback` | Safaricom webhook (called by Daraja, not you) |
+| Method | Path                 | Description                                      |
+| ------ | -------------------- | ------------------------------------------------ |
+| `GET`  | `/health`            | Server alive check                               |
+| `POST` | `/bridge/initiate`   | Start a KES → USDC transaction                   |
+| `GET`  | `/bridge/status/:id` | Poll transaction state                           |
+| `POST` | `/bridge/retry/:id`  | Retry failed ETH transfer after M-Pesa confirmed |
+| `POST` | `/mpesa/callback`    | Safaricom webhook (called by Daraja, not you)    |
 
 ## Setup
 

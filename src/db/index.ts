@@ -63,15 +63,14 @@ export const txDB = {
        @phone, 
        @kes_amount, 
        @recipient_address
-       )`
+       )`,
     ).run(data);
     return txDB.get(data.id)!;
   },
 
   get(id: string): Transaction | undefined {
-    return db
-      .prepare("SELECT * FROM transactions WHERE id = ?")
-      .get(id) as Transaction | undefined;
+    return db.prepare("SELECT * FROM transactions WHERE id = ?").get(id) as
+      Transaction | undefined;
   },
 
   getByCheckoutId(checkoutId: string): Transaction | undefined {
@@ -85,7 +84,7 @@ export const txDB = {
       .map((k) => `${k} = @${k}`)
       .join(", ");
     db.prepare(
-      `UPDATE transactions SET ${setClause}, updated_at = unixepoch() WHERE id = ?`
+      `UPDATE transactions SET ${setClause}, updated_at = unixepoch() WHERE id = ?`,
     ).run({ ...fields, id } as Record<string, unknown>);
   },
 };

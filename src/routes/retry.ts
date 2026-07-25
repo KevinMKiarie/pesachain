@@ -45,7 +45,10 @@ router.post("/:id", async (req: Request, res: Response) => {
     console.log(`[retry] USDC sent! tx: ${result.explorerUrl}`);
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : String(err);
-    txDB.update(tx.id, { status: "failed", error: `ETH retry failed: ${message}` });
+    txDB.update(tx.id, {
+      status: "failed",
+      error: `ETH retry failed: ${message}`,
+    });
     console.error(`[retry] ETH retry failed for ${tx.id}: ${message}`);
   }
 });

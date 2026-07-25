@@ -19,7 +19,7 @@ export interface TransferResult {
 
 export async function sendUSDC(
   recipientAddress: string,
-  usdcAmount: number
+  usdcAmount: number,
 ): Promise<TransferResult> {
   const provider = new ethers.JsonRpcProvider(AMOY_RPC);
   const signer = new ethers.Wallet(process.env.ETH_PRIVATE_KEY!, provider);
